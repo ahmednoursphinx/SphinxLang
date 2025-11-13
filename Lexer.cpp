@@ -22,4 +22,13 @@ public:
     r_paren,
     KW_with
   };
+private:
+  TokenKind Kind;
+  llvm::StringRef Text;
+
+public:
+  TokenKind getKind() const { return Kind; }
+  llvm::StringRef getText() const {
+    return Text;
+  }
 }
