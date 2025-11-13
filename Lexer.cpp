@@ -58,3 +58,10 @@ void Lexer::next(Token &token) {
     return;
   }
 }
+
+void Lexer::formToken(Token &Tok, const char *TokEnd,
+                      Token::TokenKind Kind) {
+  Tok.Kind = Kind;
+  Tok.Text = llvm::StringRef(BufferPtr, TokEnd - BufferPtr);
+  BufferPtr = TokEnd;
+}
