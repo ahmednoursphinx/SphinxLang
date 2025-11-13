@@ -24,11 +24,21 @@ public:
   };
 private:
   TokenKind Kind;
-  llvm::StringRef Text;
+  llvm::StringRef Text; //  start of the text of the token
 
 public:
   TokenKind getKind() const { return Kind; }
   llvm::StringRef getText() const {
     return Text;
   }
-}
+
+  // test whether the token is of a certain kind
+  bool is(TokenKind K) const { return Kind == K; }
+  bool isOneOf(TokenKind K1, TokenKind K2) const {
+    return is(K1) || is(K2);
+  }
+  template <typename... Ts>
+  bool isOneOf(TokenKind K1, TokenKind K2, Ts... Ks) const {
+    return is(K1) || isOneOf(K2, Ks...);
+  }
+};
