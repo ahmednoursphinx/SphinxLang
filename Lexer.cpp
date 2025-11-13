@@ -1,19 +1,6 @@
 #ifndef LEXER_H
 #define LEXER_H
-// #include "llvm/ADT/StringRef.h"
-// #include "llvm/Support/MemoryBuffer.h"
 
-class Lexer;
-class Token {
- friend class Lexer;
-public:
-  enum TokenKind : unsigned short {
-    eoi, unknown, ident, number, comma, colon, plus,
-    minus, star, slash, l_paren, r_paren, KW_with
-  };
-private:
- TokenKind Kind;
- llvm::StringRef Text;
-public:
-  TokenKind getKind() const { return Kind; }
-  llvm::StringRef getText() const { return Text; }
+#include "llvm/ADT/StringRef.h" // llvm::StringRef class encapsulates a pointer to a C string and its length
+#include "llvm/Support/MemoryBuffer.h" // llvm::MemoryBuffer class provides read-only access to a block of memory, filled with the content of a file
+
