@@ -42,3 +42,21 @@ public:
     return is(K1) || isOneOf(K2, Ks...);
   }
 };
+
+class Lexer {
+  const char *BufferStart;
+  const char *BufferPtr;
+
+public:
+  Lexer(const llvm::StringRef &Buffer) {
+    BufferStart = Buffer.begin();
+    BufferPtr = BufferStart;
+  }
+
+  void next(Token &token); // return the next token acting as iterator 
+
+private:
+  void formToken(Token &Result, const char *TokEnd,
+                 Token::TokenKind Kind);
+};
+#endif
